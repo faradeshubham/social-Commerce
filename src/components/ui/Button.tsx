@@ -24,29 +24,29 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
-    // Base styles
+    // shadcn base class configurations
     const baseStyles =
-      'inline-flex items-center justify-center font-heading font-medium rounded-xl transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98]'
+      'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50'
 
-    // Variant styles
+    // Map variant values to shadcn style variables
     const variants = {
       primary:
-        'bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800 focus-visible:ring-primary-500 shadow-premium',
+        'bg-primary text-primary-foreground shadow hover:bg-primary/90',
       secondary:
-        'bg-accent-500 text-white hover:bg-accent-600 active:bg-accent-700 focus-visible:ring-accent-500 shadow-premium-sm',
+        'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
       outline:
-        'border border-slate-200 dark:border-slate-800 bg-transparent text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 focus-visible:ring-primary-500',
+        'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground text-foreground',
       ghost:
-        'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-slate-100 focus-visible:ring-primary-500',
+        'hover:bg-accent hover:text-accent-foreground text-foreground',
       danger:
-        'bg-rose-600 text-white hover:bg-rose-700 active:bg-rose-800 focus-visible:ring-rose-500',
+        'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
     }
 
-    // Size styles (supporting WCAG touch target size targets where possible, md/lg have min-h >= 44px)
+    // shadcn size specifications
     const sizes = {
-      sm: 'px-3.5 py-2 text-xs min-h-[36px]',
-      md: 'px-5 py-2.5 text-sm min-h-[44px]',
-      lg: 'px-7 py-3.5 text-base min-h-[52px]',
+      sm: 'h-8 rounded-md px-3 text-xs',
+      md: 'h-10 px-4 py-2 text-sm',
+      lg: 'h-11 rounded-md px-8 text-base',
     }
 
     const classes = [baseStyles, variants[variant], sizes[size], className]
@@ -62,16 +62,16 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {isLoading && (
-          <Loader2 className="w-4 h-4 mr-2 animate-spin text-current" aria-hidden="true" />
+          <Loader2 className="w-3.5 h-3.5 mr-2 animate-spin text-current" aria-hidden="true" />
         )}
         {!isLoading && leftIcon && (
-          <span className="mr-2 inline-flex items-center" aria-hidden="true">
+          <span className="mr-1 inline-flex items-center justify-center" aria-hidden="true">
             {leftIcon}
           </span>
         )}
         <span>{children}</span>
         {!isLoading && rightIcon && (
-          <span className="ml-2 inline-flex items-center" aria-hidden="true">
+          <span className="ml-1 inline-flex items-center justify-center" aria-hidden="true">
             {rightIcon}
           </span>
         )}
