@@ -11,9 +11,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
         ref={ref}
         className={[
           'rounded-xl border border-border bg-card text-card-foreground shadow-sm transition-all duration-150',
-          hoverEffect
-            ? 'hover:bg-accent/40 hover:border-zinc-350 dark:hover:border-zinc-700'
-            : '',
+          hoverEffect ? 'hover:bg-accent/40 hover:border-zinc-350 dark:hover:border-zinc-700' : '',
           className,
         ]
           .filter(Boolean)

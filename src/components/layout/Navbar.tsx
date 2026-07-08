@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { Sun, Moon, Layers, Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 
@@ -15,7 +16,7 @@ export interface NavbarProps {
   onToggleDarkMode: () => void
 }
 
-const DEFAULT_LINKS: NavLinkItem[] = [
+const DEFAULT_WORKSPACE_LINKS: NavLinkItem[] = [
   { label: 'Overview', href: '#overview' },
   { label: 'Campaigns', href: '#campaigns' },
   { label: 'Products', href: '#products' },
@@ -23,14 +24,22 @@ const DEFAULT_LINKS: NavLinkItem[] = [
   { label: 'Logs', href: '#logs' },
 ]
 
+const DEFAULT_LANDING_LINKS: NavLinkItem[] = [
+  { label: 'About', href: '#about' },
+  { label: 'Features', href: '#features' },
+]
+
 export const Navbar: React.FC<NavbarProps> = ({
-  links = DEFAULT_LINKS,
   ctaText = 'New Campaign',
   onCtaClick,
   darkMode,
   onToggleDarkMode,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
+  const location = useLocation()
+  const isWorkspace = location.pathname.startsWith('/workspace')
+
+  const links = isWorkspace ? DEFAULT_WORKSPACE_LINKS : DEFAULT_LANDING_LINKS
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen)
@@ -50,8 +59,8 @@ export const Navbar: React.FC<NavbarProps> = ({
     <header className="sticky top-0 z-40 w-full border-b border-border bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/60 transition-colors duration-150">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
         {/* Workspace Brand Logo */}
-        <a
-          href="#"
+        <Link
+          to="/"
           className="flex items-center space-x-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring rounded p-1"
           aria-label="MakeWith Home"
         >
@@ -59,9 +68,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             <Layers className="h-5 w-5" />
           </div>
           <span className="font-semibold text-sm tracking-tight text-foreground">
-            MakeWith <span className="text-muted-foreground font-normal">/ Workspace</span>
+            MakeWith{' '}
+            {isWorkspace && <span className="text-muted-foreground font-normal">/ Workspace</span>}
           </span>
-        </a>
+        </Link>
 
         {/* Desktop Links - shadcn-like horizontal tabs */}
         <nav
@@ -90,14 +100,22 @@ export const Navbar: React.FC<NavbarProps> = ({
             {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </Button>
 
-          <Button
-            variant="primary"
-            size="sm"
-            onClick={onCtaClick}
-            className="hidden sm:inline-flex text-xs h-9"
-          >
-            {ctaText}
-          </Button>
+          {isWorkspace ? (
+            <Button
+              variant="primary"
+              size="sm"
+              onClick={onCtaClick}
+              className="hidden sm:inline-flex text-xs h-9"
+            >
+              {ctaText}
+            </Button>
+          ) : (
+            <Link to="/workspace" className="hidden sm:inline-flex">
+              <Button variant="primary" size="sm" className="text-xs h-9">
+                Launch Workspace
+              </Button>
+            </Link>
+          )}
 
           {/* Mobile Menu Toggle */}
           <Button
@@ -117,12 +135,13 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div
         id="mobile-menu"
         className={`md:hidden overflow-hidden transition-all duration-200 ease-in-out bg-background ${
-          mobileMenuOpen
-            ? 'max-h-64 py-3 px-4 border-t border-border'
-            : 'max-h-0 py-0 px-4'
+          mobileMenuOpen ? 'max-h-64 py-3 px-4 border-t border-border' : 'max-h-0 py-0 px-4'
         }`}
       >
-        <nav className="flex flex-col space-y-2.5 text-sm font-medium" aria-label="Mobile navigation">
+        <nav
+          className="flex flex-col space-y-2.5 text-sm font-medium"
+          aria-label="Mobile navigation"
+        >
           {links.map((link) => (
             <a
               key={link.label}
@@ -134,18 +153,28 @@ export const Navbar: React.FC<NavbarProps> = ({
             </a>
           ))}
           <div className="pt-2 border-t border-border flex justify-between items-center sm:hidden">
-            <span className="text-xs text-muted-foreground">Workspace Action:</span>
-            <Button
-              variant="primary"
-              size="sm"
-              onClick={() => {
-                setMobileMenuOpen(false)
-                if (onCtaClick) onCtaClick()
-              }}
-              className="h-8 text-xs px-3"
-            >
-              {ctaText}
-            </Button>
+            <span className="text-xs text-muted-foreground">
+              {isWorkspace ? 'Workspace Action:' : 'Platform:'}
+            </span>
+            {isWorkspace ? (
+              <Button
+                variant="primary"
+                size="sm"
+                onClick={() => {
+                  setMobileMenuOpen(false)
+                  if (onCtaClick) onCtaClick()
+                }}
+                className="h-8 text-xs px-3"
+              >
+                {ctaText}
+              </Button>
+            ) : (
+              <Link to="/workspace" onClick={() => setMobileMenuOpen(false)}>
+                <Button variant="primary" size="sm" className="h-8 text-xs px-3">
+                  Launch Workspace
+                </Button>
+              </Link>
+            )}
           </div>
         </nav>
       </div>

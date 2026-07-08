@@ -30,16 +30,12 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     // Map variant values to shadcn style variables
     const variants = {
-      primary:
-        'bg-primary text-primary-foreground shadow hover:bg-primary/90',
-      secondary:
-        'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
+      primary: 'bg-primary text-primary-foreground shadow hover:bg-primary/90',
+      secondary: 'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
       outline:
         'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground text-foreground',
-      ghost:
-        'hover:bg-accent hover:text-accent-foreground text-foreground',
-      danger:
-        'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
+      ghost: 'hover:bg-accent hover:text-accent-foreground text-foreground',
+      danger: 'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
     }
 
     // shadcn size specifications
