@@ -27,6 +27,9 @@ const DEFAULT_WORKSPACE_LINKS: NavLinkItem[] = [
 const DEFAULT_LANDING_LINKS: NavLinkItem[] = [
   { label: 'About', href: '#about' },
   { label: 'Features', href: '#features' },
+  { label: 'How It Works', href: '#how-it-works' },
+  { label: 'Marketplace', href: '#marketplace' },
+  { label: 'Reels', href: '#reels' },
 ]
 
 export const Navbar: React.FC<NavbarProps> = ({
