@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { motion } from 'framer-motion'
 import { Card } from '@/components/ui/Card'
 import { UserPlus, UserCheck, Search, Play, Tag, ShoppingBag, Award } from 'lucide-react'
 
@@ -95,11 +96,15 @@ export const HowItWorks: React.FC = () => {
             {steps.map((step, index) => {
               const isEven = index % 2 === 0
               return (
-                <div
+                <motion.div
                   key={step.number}
                   className={`flex flex-col lg:flex-row items-start lg:items-center relative w-full ${
                     isEven ? 'lg:flex-row-reverse' : ''
                   }`}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-100px' }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   {/* Timeline Node Point */}
                   <div className="absolute left-8 lg:left-1/2 -translate-x-1/2 flex items-center justify-center z-10">
@@ -139,7 +144,7 @@ export const HowItWorks: React.FC = () => {
 
                   {/* Empty Spacer side on Desktop */}
                   <div className="hidden lg:block lg:w-1/2" />
-                </div>
+                </motion.div>
               )
             })}
           </div>

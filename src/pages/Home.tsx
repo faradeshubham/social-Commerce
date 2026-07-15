@@ -5,6 +5,11 @@ import { Features } from '@/components/sections/Features'
 import { HowItWorks } from '@/components/sections/HowItWorks'
 import { Marketplace } from '@/components/sections/Marketplace'
 import { Reels } from '@/components/sections/Reels'
+import { AppShowcase } from '@/components/sections/AppShowcase'
+import { Download } from '@/components/sections/Download'
+import { Testimonials } from '@/components/sections/Testimonials'
+import { Faq } from '@/components/sections/Faq'
+import { Contact } from '@/components/sections/Contact'
 
 export const Home: React.FC = () => {
   return (
@@ -15,6 +20,11 @@ export const Home: React.FC = () => {
       <HowItWorks />
       <Marketplace />
       <Reels />
+      <AppShowcase />
+      <Download />
+      <Testimonials />
+      <Faq />
+      <Contact />
     </div>
   )
 }

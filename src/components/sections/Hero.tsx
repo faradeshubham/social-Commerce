@@ -1,16 +1,38 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import type { Variants } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { ArrowRight, ShoppingBag, Heart, MessageSquare, Play, Sparkles } from 'lucide-react'
 
 export const Hero: React.FC = () => {
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  }
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+  }
+
   return (
     <section className="relative w-full py-16 md:py-24 lg:py-28 overflow-hidden bg-background">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
         {/* Left Column: Heading, Subheading & CTAs */}
-        <div className="lg:col-span-7 flex flex-col justify-center space-y-8 text-left">
-          <div className="inline-flex max-w-fit">
+        <motion.div
+          className="lg:col-span-7 flex flex-col justify-center space-y-8 text-left"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.div variants={itemVariants} className="inline-flex max-w-fit">
             <Badge
               variant="outline"
               className="flex items-center gap-1.5 py-1 px-3 border-zinc-200 dark:border-zinc-800 text-xs font-medium tracking-tight rounded-full"
@@ -18,9 +40,9 @@ export const Hero: React.FC = () => {
               <Sparkles className="w-3.5 h-3.5 text-zinc-500" />
               <span>Platform v1.0.0 is Live</span>
             </Badge>
-          </div>
+          </motion.div>
 
-          <div className="space-y-4">
+          <motion.div variants={itemVariants} className="space-y-4">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] text-foreground">
               Social commerce meets <br />
               <span className="text-zinc-400 dark:text-zinc-600 font-normal italic">
@@ -32,26 +54,34 @@ export const Hero: React.FC = () => {
               Integrate creator short-form content with direct checkout, manage multi-party splits
               in real-time, and run collaborative social store campaigns seamlessly.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-            <Link to="/workspace">
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3"
+          >
+            <Link to="/waitlist">
               <Button
                 variant="primary"
                 size="lg"
                 className="w-full sm:w-auto font-semibold shadow-md group"
               >
-                Open Workspace
+                Join Waitlist
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
-            <Button variant="outline" size="lg" className="w-full sm:w-auto font-semibold">
-              Get Started
-            </Button>
-          </div>
+            <a href="#download" className="w-full sm:w-auto">
+              <Button variant="outline" size="lg" className="w-full font-semibold">
+                Download App
+              </Button>
+            </a>
+          </motion.div>
 
           {/* Quick trust metrics */}
-          <div className="pt-6 border-t border-border flex flex-wrap gap-8 text-xs text-muted-foreground">
+          <motion.div
+            variants={itemVariants}
+            className="pt-6 border-t border-border flex flex-wrap gap-8 text-xs text-muted-foreground"
+          >
             <div>
               <p className="font-bold text-foreground text-sm">3.2M+</p>
               <p>Active Reach</p>
@@ -64,11 +94,16 @@ export const Hero: React.FC = () => {
               <p className="font-bold text-foreground text-sm">99.9%</p>
               <p>Checkout Uptime</p>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Right Column: Handcrafted App Feed Mockup */}
-        <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
+        <motion.div
+          className="lg:col-span-5 relative flex justify-center lg:justify-end"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+        >
           <div className="relative w-full max-w-[340px] aspect-[9/18] rounded-[2.5rem] border-[10px] border-zinc-900 dark:border-zinc-800 bg-zinc-950 p-3 shadow-2xl flex flex-col justify-between overflow-hidden">
             {/* Phone Speaker/Camera notch */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-5 bg-zinc-900 dark:bg-zinc-800 rounded-b-2xl z-20"></div>
@@ -136,7 +171,7 @@ export const Hero: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

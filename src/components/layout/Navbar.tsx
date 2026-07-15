@@ -27,9 +27,9 @@ const DEFAULT_WORKSPACE_LINKS: NavLinkItem[] = [
 const DEFAULT_LANDING_LINKS: NavLinkItem[] = [
   { label: 'About', href: '#about' },
   { label: 'Features', href: '#features' },
-  { label: 'How It Works', href: '#how-it-works' },
-  { label: 'Marketplace', href: '#marketplace' },
-  { label: 'Reels', href: '#reels' },
+  { label: 'Showcase', href: '#showcase' },
+  { label: 'FAQ', href: '#faq' },
+  { label: 'Contact', href: '#contact' },
 ]
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -113,11 +113,18 @@ export const Navbar: React.FC<NavbarProps> = ({
               {ctaText}
             </Button>
           ) : (
-            <Link to="/workspace" className="hidden sm:inline-flex">
-              <Button variant="primary" size="sm" className="text-xs h-9">
-                Launch Workspace
-              </Button>
-            </Link>
+            <div className="hidden sm:flex items-center space-x-2">
+              <Link to="/login">
+                <Button variant="ghost" size="sm" className="text-xs h-9">
+                  Login
+                </Button>
+              </Link>
+              <Link to="/waitlist">
+                <Button variant="primary" size="sm" className="text-xs h-9">
+                  Join Waitlist
+                </Button>
+              </Link>
+            </div>
           )}
 
           {/* Mobile Menu Toggle */}
@@ -172,11 +179,18 @@ export const Navbar: React.FC<NavbarProps> = ({
                 {ctaText}
               </Button>
             ) : (
-              <Link to="/workspace" onClick={() => setMobileMenuOpen(false)}>
-                <Button variant="primary" size="sm" className="h-8 text-xs px-3">
-                  Launch Workspace
-                </Button>
-              </Link>
+              <div className="flex items-center space-x-2">
+                <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
+                  <Button variant="ghost" size="sm" className="h-8 text-xs px-3">
+                    Login
+                  </Button>
+                </Link>
+                <Link to="/waitlist" onClick={() => setMobileMenuOpen(false)}>
+                  <Button variant="primary" size="sm" className="h-8 text-xs px-3">
+                    Join Waitlist
+                  </Button>
+                </Link>
+              </div>
             )}
           </div>
         </nav>

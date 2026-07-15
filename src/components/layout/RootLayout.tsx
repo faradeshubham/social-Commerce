@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Outlet } from 'react-router-dom'
 import { Navbar } from './Navbar'
+import { Footer } from './Footer'
 
 export const RootLayout: React.FC = () => {
   const [darkMode, setDarkMode] = React.useState(() => {
@@ -37,18 +38,7 @@ export const RootLayout: React.FC = () => {
         <Outlet />
       </main>
 
-      <footer className="border-t border-border bg-background py-6 text-center text-xs text-muted-foreground">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between space-y-2 sm:space-y-0">
-          <div className="flex items-center space-x-2">
-            <span className="font-semibold text-foreground">
-              MakeWith &copy; {new Date().getFullYear()}
-            </span>
-            <span className="text-border">|</span>
-            <span>All systems operational</span>
-          </div>
-          <p>Productivity platform for social commerce creators & brands.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }

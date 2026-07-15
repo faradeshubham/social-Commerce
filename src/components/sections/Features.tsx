@@ -73,6 +73,18 @@ export const Features: React.FC = () => {
       icon: <Compass className="w-4 h-4" />,
       badgeText: 'Predictive',
     },
+    {
+      title: 'Profile System',
+      description:
+        'Build your storefront credentials and connect your wallet to showcase your unique style and products.',
+      icon: <Users className="w-4 h-4" />,
+    },
+    {
+      title: 'Follow System',
+      description:
+        'Follow your favorite creators and brands to get notified on new product drops and collaborations immediately.',
+      icon: <Handshake className="w-4 h-4" />,
+    },
   ]
 
   return (

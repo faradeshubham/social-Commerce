@@ -209,6 +209,34 @@ export const Marketplace: React.FC = () => {
                 ))}
               </div>
             </Card>
+
+            {/* Latest Collaborations Card */}
+            <Card className="bg-card border-border">
+              <div className="p-5 border-b border-border flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Users className="w-4 h-4 text-zinc-500" />
+                  <h3 className="font-bold text-sm text-foreground">Latest Collaborations</h3>
+                </div>
+              </div>
+              <div className="p-5 divide-y divide-border space-y-4">
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center justify-between">
+                    <p className="font-bold text-xs text-foreground">@alex_design</p>
+                    <span className="text-[10px] text-muted-foreground">with</span>
+                    <p className="font-bold text-xs text-foreground">Monomark Studio</p>
+                  </div>
+                  <Badge variant="secondary" className="text-[9px] font-mono rounded w-fit">Live Campaign</Badge>
+                </div>
+                <div className="flex flex-col gap-2 pt-4">
+                  <div className="flex items-center justify-between">
+                    <p className="font-bold text-xs text-foreground">@sarah_style</p>
+                    <span className="text-[10px] text-muted-foreground">with</span>
+                    <p className="font-bold text-xs text-foreground">Aether Gear</p>
+                  </div>
+                  <Badge variant="secondary" className="text-[9px] font-mono rounded w-fit">Upcoming</Badge>
+                </div>
+              </div>
+            </Card>
           </div>
 
           {/* Right Column: Products Catalog (Col span 8) */}
