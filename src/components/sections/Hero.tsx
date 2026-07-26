@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import type { Variants } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
-import { ArrowRight, ShoppingBag, Heart, MessageSquare, Play, Sparkles } from 'lucide-react'
+import { ArrowRight, ShoppingBag, Heart, MessageSquare, Sparkles } from 'lucide-react'
 
 export const Hero: React.FC = () => {
   const containerVariants: Variants = {
@@ -12,19 +12,41 @@ export const Hero: React.FC = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.15,
       },
     },
   }
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+    hidden: { opacity: 0, scale: 0.8, y: 40, rotate: -3 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      rotate: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 300,
+        damping: 12
+      }
+    },
   }
 
   return (
     <section className="relative w-full py-16 md:py-24 lg:py-28 overflow-hidden bg-background">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      {/* Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0"
+      >
+        <source src="https://www.pexels.com/download/video/38161428/" type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-background/50 z-0 border-b-8 border-border"></div>
+
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center px-4 md:px-8 max-w-7xl mx-auto">
         {/* Left Column: Heading, Subheading & CTAs */}
         <motion.div
           className="lg:col-span-7 flex flex-col justify-center space-y-8 text-left"
@@ -35,22 +57,22 @@ export const Hero: React.FC = () => {
           <motion.div variants={itemVariants} className="inline-flex max-w-fit">
             <Badge
               variant="outline"
-              className="flex items-center gap-1.5 py-1 px-3 border-zinc-200 dark:border-zinc-800 text-xs font-medium tracking-tight rounded-full"
+              className="flex items-center gap-1.5 py-1 px-3 border-2 border-border text-xs font-black uppercase tracking-widest rounded-none bg-background shadow-[2px_2px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_rgba(255,255,255,1)]"
             >
-              <Sparkles className="w-3.5 h-3.5 text-zinc-500" />
+              <Sparkles className="w-3.5 h-3.5" />
               <span>Platform v1.0.0 is Live</span>
             </Badge>
           </motion.div>
 
           <motion.div variants={itemVariants} className="space-y-4">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] text-foreground">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter leading-[1] text-foreground">
               Social commerce meets <br />
-              <span className="text-zinc-400 dark:text-zinc-600 font-normal italic">
-                developer precision
+              <span className="text-primary font-black italic">
+                dev precision
               </span>
               .
             </h1>
-            <p className="text-base md:text-lg text-muted-foreground max-w-xl font-normal leading-relaxed">
+            <p className="text-base md:text-xl text-foreground font-medium border-l-4 border-primary pl-4 max-w-xl">
               Integrate creator short-form content with direct checkout, manage multi-party splits
               in real-time, and run collaborative social store campaigns seamlessly.
             </p>
@@ -60,19 +82,19 @@ export const Hero: React.FC = () => {
             variants={itemVariants}
             className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3"
           >
-            <Link to="/waitlist">
+            <Link to="/admin">
               <Button
                 variant="primary"
                 size="lg"
-                className="w-full sm:w-auto font-semibold shadow-md group"
+                className="w-full sm:w-auto font-black uppercase tracking-widest rounded-none border-2 border-border shadow-[4px_4px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_rgba(255,255,255,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all group bg-primary text-primary-foreground"
               >
-                Join Waitlist
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                Control Panel
+                <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
-            <a href="#download" className="w-full sm:w-auto">
-              <Button variant="outline" size="lg" className="w-full font-semibold">
-                Download App
+            <a href="#reels" className="w-full sm:w-auto">
+              <Button variant="outline" size="lg" className="w-full font-black uppercase tracking-widest rounded-none border-2 border-border shadow-[4px_4px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_rgba(255,255,255,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all bg-background text-foreground hover:bg-secondary">
+                Watch Reels Video
               </Button>
             </a>
           </motion.div>
@@ -100,23 +122,28 @@ export const Hero: React.FC = () => {
         {/* Right Column: Handcrafted App Feed Mockup */}
         <motion.div
           className="lg:col-span-5 relative flex justify-center lg:justify-end"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+          initial={{ opacity: 0, x: 100, rotate: 5 }}
+          animate={{ opacity: 1, x: 0, rotate: 0 }}
+          transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.3 }}
         >
-          <div className="relative w-full max-w-[340px] aspect-[9/18] rounded-[2.5rem] border-[10px] border-zinc-900 dark:border-zinc-800 bg-zinc-950 p-3 shadow-2xl flex flex-col justify-between overflow-hidden">
+          <div className="relative w-full max-w-[340px] aspect-[9/18] rounded-none border-[12px] border-border bg-background p-2 shadow-[16px_16px_0px_rgba(0,0,0,1)] dark:shadow-[16px_16px_0px_rgba(255,255,255,1)] flex flex-col justify-between overflow-hidden">
             {/* Phone Speaker/Camera notch */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-5 bg-zinc-900 dark:bg-zinc-800 rounded-b-2xl z-20"></div>
 
             {/* Video Post Card (Simulating Reels View) */}
             <div className="relative flex-1 rounded-[1.8rem] overflow-hidden bg-zinc-900 flex flex-col justify-between p-4 pt-8">
-              {/* Overlay Mock Video Content */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40 z-0"></div>
-
-              {/* Mock Video Placeholder / Static image feeling */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-25 z-0">
-                <Play className="w-16 h-16 text-white stroke-[1]" />
-              </div>
+              {/* Actual Video Content for Mockup */}
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover z-0"
+              >
+                <source src="https://videos.pexels.com/video-files/7568580/7568580-uhd_2160_4096_25fps.mp4" type="video/mp4" />
+              </video>
+              {/* Overlay Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 z-0"></div>
 
               {/* Status Header */}
               <div className="relative z-10 flex items-center justify-between text-zinc-100 text-[10px] font-medium tracking-tight">
