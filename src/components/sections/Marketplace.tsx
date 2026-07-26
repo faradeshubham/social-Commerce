@@ -225,7 +225,9 @@ export const Marketplace: React.FC = () => {
                     <span className="text-[10px] text-muted-foreground">with</span>
                     <p className="font-bold text-xs text-foreground">Monomark Studio</p>
                   </div>
-                  <Badge variant="secondary" className="text-[9px] font-mono rounded w-fit">Live Campaign</Badge>
+                  <Badge variant="secondary" className="text-[9px] font-mono rounded w-fit">
+                    Live Campaign
+                  </Badge>
                 </div>
                 <div className="flex flex-col gap-2 pt-4">
                   <div className="flex items-center justify-between">
@@ -233,7 +235,9 @@ export const Marketplace: React.FC = () => {
                     <span className="text-[10px] text-muted-foreground">with</span>
                     <p className="font-bold text-xs text-foreground">Aether Gear</p>
                   </div>
-                  <Badge variant="secondary" className="text-[9px] font-mono rounded w-fit">Upcoming</Badge>
+                  <Badge variant="secondary" className="text-[9px] font-mono rounded w-fit">
+                    Upcoming
+                  </Badge>
                 </div>
               </div>
             </Card>

@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { RootLayout } from './components/layout/RootLayout'
 import { Home } from './pages/Home'
 import { Workspace } from './pages/Workspace'
+import { Admin } from './pages/Admin'
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: 'workspace',
         element: <Workspace />,
+      },
+      {
+        path: 'admin',
+        element: <Admin />,
       },
     ],
   },

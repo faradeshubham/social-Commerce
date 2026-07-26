@@ -24,7 +24,7 @@ export const Reels: React.FC = () => {
       creator: '@alex_design',
       title: 'Styling the Raw Worker Denim Jacket',
       videoThumbnailUrl:
-        'https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&q=80&w=600',
+        'https://videos.pexels.com/video-files/7568580/7568580-uhd_2160_4096_25fps.mp4',
       likes: '12.4k',
       comments: '348',
       taggedProduct: {
@@ -38,7 +38,7 @@ export const Reels: React.FC = () => {
       creator: '@sarah_style',
       title: 'Minimalist EDC Pack Showcase',
       videoThumbnailUrl:
-        'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&q=80&w=600',
+        'https://videos.pexels.com/video-files/6990666/6990666-uhd_2160_4096_25fps.mp4',
       likes: '8.9k',
       comments: '212',
       taggedProduct: {
@@ -52,7 +52,7 @@ export const Reels: React.FC = () => {
       creator: '@lucas_fits',
       title: 'Apex Modular Trail Boot Field Test',
       videoThumbnailUrl:
-        'https://images.unsplash.com/photo-1520639888713-7851133b1ed0?auto=format&fit=crop&q=80&w=600',
+        'https://videos.pexels.com/video-files/6990393/6990393-hd_1080_1920_30fps.mp4',
       likes: '15.1k',
       comments: '492',
       taggedProduct: {
@@ -70,10 +70,23 @@ export const Reels: React.FC = () => {
   return (
     <section
       id="reels"
-      className="py-16 md:py-24 border-t border-border bg-background"
+      className="relative py-16 md:py-24 border-t-8 border-border bg-background overflow-hidden"
       aria-labelledby="reels-heading"
     >
-      <div className="space-y-12">
+      {/* Background Video for Reels Section */}
+      <video 
+        autoPlay 
+        loop 
+        muted 
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0"
+      >
+        <source src="https://videos.pexels.com/video-files/5077093/5077093-hd_1920_1080_30fps.mp4" type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-background/80 z-0 mix-blend-multiply"></div>
+      <div className="absolute inset-0 bg-background/40 z-0"></div>
+
+      <div className="relative z-10 space-y-12 max-w-7xl mx-auto px-4">
         {/* Section Header */}
         <div className="space-y-4 max-w-3xl">
           <p className="text-xs font-mono uppercase tracking-wider text-zinc-500">
@@ -96,13 +109,15 @@ export const Reels: React.FC = () => {
           {reels.map((reel) => (
             <Card
               key={reel.id}
-              className="relative w-full max-w-[360px] aspect-[9/16] overflow-hidden bg-zinc-950 border-zinc-800 shadow-xl group hover:shadow-2xl transition-all duration-300"
+              className="relative w-full max-w-[360px] aspect-[9/16] overflow-hidden bg-background border-4 border-border rounded-none shadow-[12px_12px_0px_rgba(0,0,0,1)] dark:shadow-[12px_12px_0px_rgba(255,255,255,1)] group hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:translate-y-2 hover:translate-x-2 transition-all duration-300"
             >
-              {/* Thumbnail Image */}
-              <img
+              {/* Thumbnail Video */}
+              <video
                 src={reel.videoThumbnailUrl}
-                alt={reel.title}
-                loading="lazy"
+                autoPlay
+                loop
+                muted
+                playsInline
                 className="absolute inset-0 w-full h-full object-cover opacity-85 transition-transform duration-500 group-hover:scale-105"
               />
 
