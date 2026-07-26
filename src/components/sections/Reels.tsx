@@ -73,19 +73,6 @@ export const Reels: React.FC = () => {
       className="relative py-16 md:py-24 border-t-8 border-border bg-background overflow-hidden"
       aria-labelledby="reels-heading"
     >
-      {/* Background Video for Reels Section */}
-      <video 
-        autoPlay 
-        loop 
-        muted 
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0"
-      >
-        <source src="https://videos.pexels.com/video-files/5077093/5077093-hd_1920_1080_30fps.mp4" type="video/mp4" />
-      </video>
-      <div className="absolute inset-0 bg-background/80 z-0 mix-blend-multiply"></div>
-      <div className="absolute inset-0 bg-background/40 z-0"></div>
-
       <div className="relative z-10 space-y-12 max-w-7xl mx-auto px-4">
         {/* Section Header */}
         <div className="space-y-4 max-w-3xl">

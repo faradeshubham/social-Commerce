@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import type { Variants } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
-import { ArrowRight, ShoppingBag, Heart, MessageSquare, Play, Sparkles } from 'lucide-react'
+import { ArrowRight, ShoppingBag, Heart, MessageSquare, Sparkles } from 'lucide-react'
 
 export const Hero: React.FC = () => {
   const containerVariants: Variants = {
@@ -19,30 +19,30 @@ export const Hero: React.FC = () => {
 
   const itemVariants: Variants = {
     hidden: { opacity: 0, scale: 0.8, y: 40, rotate: -3 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       scale: 1,
-      y: 0, 
+      y: 0,
       rotate: 0,
-      transition: { 
+      transition: {
         type: 'spring',
         stiffness: 300,
         damping: 12
-      } 
+      }
     },
   }
 
   return (
     <section className="relative w-full py-16 md:py-24 lg:py-28 overflow-hidden bg-background">
       {/* Background Video */}
-      <video 
-        autoPlay 
-        loop 
-        muted 
+      <video
+        autoPlay
+        loop
+        muted
         playsInline
         className="absolute inset-0 w-full h-full object-cover z-0"
       >
-        <source src="https://videos.pexels.com/video-files/5077093/5077093-hd_1920_1080_30fps.mp4" type="video/mp4" />
+        <source src="https://www.pexels.com/download/video/38161428/" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-background/50 z-0 border-b-8 border-border"></div>
 
@@ -82,19 +82,19 @@ export const Hero: React.FC = () => {
             variants={itemVariants}
             className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3"
           >
-            <Link to="/waitlist">
+            <Link to="/admin">
               <Button
-                variant="default"
+                variant="primary"
                 size="lg"
-                className="w-full sm:w-auto font-black uppercase tracking-widest rounded-none border-2 border-border shadow-[4px_4px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_rgba(255,255,255,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all group"
+                className="w-full sm:w-auto font-black uppercase tracking-widest rounded-none border-2 border-border shadow-[4px_4px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_rgba(255,255,255,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all group bg-primary text-primary-foreground"
               >
-                Join Waitlist
+                Control Panel
                 <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
-            <a href="#download" className="w-full sm:w-auto">
+            <a href="#reels" className="w-full sm:w-auto">
               <Button variant="outline" size="lg" className="w-full font-black uppercase tracking-widest rounded-none border-2 border-border shadow-[4px_4px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_rgba(255,255,255,1)] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all bg-background text-foreground hover:bg-secondary">
-                Download App
+                Watch Reels Video
               </Button>
             </a>
           </motion.div>
@@ -132,13 +132,18 @@ export const Hero: React.FC = () => {
 
             {/* Video Post Card (Simulating Reels View) */}
             <div className="relative flex-1 rounded-[1.8rem] overflow-hidden bg-zinc-900 flex flex-col justify-between p-4 pt-8">
-              {/* Overlay Mock Video Content */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40 z-0"></div>
-
-              {/* Mock Video Placeholder / Static image feeling */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-25 z-0">
-                <Play className="w-16 h-16 text-white stroke-[1]" />
-              </div>
+              {/* Actual Video Content for Mockup */}
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover z-0"
+              >
+                <source src="https://videos.pexels.com/video-files/7568580/7568580-uhd_2160_4096_25fps.mp4" type="video/mp4" />
+              </video>
+              {/* Overlay Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 z-0"></div>
 
               {/* Status Header */}
               <div className="relative z-10 flex items-center justify-between text-zinc-100 text-[10px] font-medium tracking-tight">
